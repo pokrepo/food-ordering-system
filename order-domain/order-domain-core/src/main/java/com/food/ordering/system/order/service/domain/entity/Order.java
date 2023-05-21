@@ -60,7 +60,7 @@ public class Order extends AggregateRoot<OrderId> {
             throw new OrderDomainException("Order is not in correct state for init cancel");
         }
         orderStatus = OrderStatus.CANCELLING;
-        updateFailureMessages();
+        updateFailureMessages(failureMessages);
     }
 
     public void cancel() {
