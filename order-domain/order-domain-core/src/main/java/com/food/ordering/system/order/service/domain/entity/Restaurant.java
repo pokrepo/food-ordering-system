@@ -3,10 +3,10 @@ package com.food.ordering.system.order.service.domain.entity;
 import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.RestaurantId;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class Restaurant extends AggregateRoot<RestaurantId> {
-    private final List<Product> products;
+    private final HashMap<String,Product> products;
     private boolean active;
 
     private Restaurant(Builder builder) {
@@ -15,8 +15,11 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
         active = builder.active;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
-    public List<Product> getProducts() {
+    public HashMap<String,Product> getProducts() {
         return products;
     }
 
@@ -26,7 +29,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
 
     public static final class Builder {
         private RestaurantId restaurantId;
-        private List<Product> products;
+        private HashMap<String,Product> products;
         private boolean active;
 
         private Builder() {
@@ -41,7 +44,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
             return this;
         }
 
-        public Builder products(List<Product> val) {
+        public Builder products(HashMap<String,Product> val) {
             products = val;
             return this;
         }
